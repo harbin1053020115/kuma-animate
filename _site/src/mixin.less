@@ -1,0 +1,16 @@
+/**
+ * Mixin
+ */
+.transition(@property: all, @duration: 1s, @easyFunc: linear, @delay: 0s){
+    -webkit-transition: @property @duration @easyFunc @delay;
+    -moz-transition: @property @duration @easyFunc @delay;
+    -ms-transition: @property @duration @easyFunc @delay;
+    -o-transition: @property @duration @easyFunc @delay;
+    transition: @property @duration @easyFunc @delay;
+}
+.perspective(@perspective: 800px){
+    -webkit-perspective: @perspective;
+    -moz-perspective: @perspective;
+    -ms-perspective: @perspective;
+    perspective: @perspective;
+}

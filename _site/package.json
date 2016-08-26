@@ -1,0 +1,37 @@
+{
+  "family": "alinw",
+  "name": "kuma-animate",
+  "version": "1.0.0",
+  "description": "The best project ever.",
+  "homepage": "http://gitlab.alibaba-inc.com/alinw/kuma-animate",
+  "author": "ermin.zem",
+  "maintainers": [
+    "ermin.zem"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.alibaba-inc.com:alinw/kuma-animate.git"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "keywords": ["animate"],
+  "licenses": "MIT",
+  "spm": {
+    "output": [
+      "kuma-animate.css"
+    ],
+    "alias": {
+      "$": "$",
+      "dialog": "alinw/dialog/2.0.7/dialog",
+      "tip": "alinw/tip/2.2.4/tip"
+    },
+    "devAlias": {},
+    "engines": {}
+  },
+  "dependencies": {
+    "gulp": "~3.9.0",
+    "gulp-watch-less": "~1.0.1",
+    "gulp-less": "~3.0.3"
+  }
+}

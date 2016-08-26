@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+    <title>alinw/kuma-animate - kuma-button动画</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="nico 0.5.2" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link type="image/x-icon" href="../static/css/favicon.ico" rel="icon">
+    <link rel="stylesheet" type="text/css" href="//alinw.alicdn.com/??alinw/kuma/3.0.4/kuma.css">
+    <link rel="stylesheet" href="../static/css/normalize.css" />
+    <link rel="stylesheet" href="../static/css/site.css" />
+    <link rel="stylesheet" href="../static/css/solarized.css" />
+
+<script src="https://alinw.alipayobjects.com/??
+seajs/seajs/2.2.0/sea.js,
+seajs/seajs-combo/1.0.1/seajs-combo.js,
+seajs/seajs-style/1.0.2/seajs-style.js,
+seajs/seajs-health/0.1.0/seajs-health.js,
+jquery/jquery/1.7.2/jquery.js"></script>
+<script>
+  (function() {
+
+  var query = location.search.substring(1).split('&');
+  var srcdir = 'src';
+
+  if (contain(query, 'dist')) {
+    srcdir = 'dist';
+    
+  } else if (contain(query, 'cov')) {
+    srcdir = 'src-cov';
+  }
+
+  var projectHost = '//alinw.alicdn.com';
+
+  seajs.config({
+    paths: {
+      platform: projectHost + '/platform',
+      alinw: projectHost + '/alinw',
+      crystal: projectHost + '/crystal'
+    },
+    alias: {
+      "$": 'jquery/jquery/1.7.2/jquery',
+      "$-debug": 'jquery/jquery/1.7.2/jquery-debug',
+      "jquery": 'jquery/jquery/1.7.2/jquery',
+      "jquery-debug": 'jquery/jquery/1.7.2/jquery-debug',
+      expect: "gallery/expect/0.2.0/expect",
+      puerh: "popomore/puerh/0.1.0/puerh",
+      handlebars: "gallery/handlebars/1.0.2/handlebars",
+      sinon: "gallery/sinon/1.6.0/sinon",
+      widget: "arale/widget/1.1.1/widget"
+    },
+    map: [function(uri) {
+      // resolve id
+      var m = uri.match(/alinw\/kuma-animate\/1.0.0\/(.*)/);
+      if (m) {
+        return resolve(m[1]);
+      }
+      return uri;
+    }, function(uri) {
+      var m = uri.match(/([A-Za-z\-]+)\/[A-Za-z\-]+\/[\.0-9]+\/.+/);
+      if (m && /^alipay|anima$/.test(m[1])) {
+        return 'http://yuan.alipay.im/assets/' + m[0];
+      }
+      return uri;
+    }],
+    comboExcludes: {test: function(uri) {
+      return uri.indexOf('https://alinw.alipayobjects.com') === -1;
+    }}
+  });
+
+  function resolve(file) {
+    if (contain(query, 'debug')) {
+      if (file.indexOf('-debug') === -1) {
+        file = file.replace(/\.(\w+)$/, '-debug.$1');
+      }
+    }
+    return seajs.resolve("../" + srcdir + "/" + file + '#');
+  }
+
+  function contain(arr, value) {
+    for (var i in arr) {
+      if (arr[i] === value) {
+        return true;
+      }
+    }
+    return false;
+  }
+      seajs.config({ alias: {"dialog":"alinw/dialog/2.0.7/dialog","tip":"alinw/tip/2.2.4/tip"}});
+    seajs.use([]);
+      seajs.config({ alias: {}});
+
+    seajs.config({alias: {
+      "$-debug": 'jquery/jquery/1.7.2/jquery-debug'
+        ,"button.css": resolve("button.css")
+        ,"common.css": resolve("common.css")
+        ,"dialog.css": resolve("dialog.css")
+        ,"icons.css": resolve("icons.css")
+        ,"kuma-animate.css": resolve("kuma-animate.css")
+        ,"kuma-button.css": resolve("kuma-button.css")
+        ,"mixin.css": resolve("mixin.css")
+        ,"tip.css": resolve("tip.css")
+    }});
+
+    // 加载依赖的 css 文件
+    var cssArray = [];
+    cssArray.push('alinw/dialog/2.0.7/dialog');
+    cssArray.push('alinw/tip/2.2.4/tip');
+    for (var i=0; i<cssArray.length; i++) {
+      if (cssArray[i].indexOf('.css') < 0) {
+        cssArray[i] = '';
+      }
+    }
+    seajs.use(cssArray);
+  })();
+</script>
+    <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.js"></script>
+    <![endif]-->
+    
+  </head>
+  <body class="alice">
+    <div id="body-wrapper">
+      <aside id="sidebar-wrapper">
+      <h1>
+          <a href="../">Kuma-animate</a><sup class="package-root"><a href="/">alinw</a></sup>
+      </h1>
+        <p class="version">当前版本：<a href="">1.0.0</a></p>
+        <p class="description">The best project ever.</p>
+        <p class="keywords" style="display: none;">animate</p>
+        <a class="source" href="http://gitlab.alibaba-inc.com/alinw/kuma-animate" target="_blank">View the Project</a>
+        <ul id="navigation" role="navigation">
+          <li><a href="../">文档</a></li>
+          <li><a href="index.html">演示</a></li>
+          <li><a href="../history.html">历史</a></li>
+          <li><a class="test-link" href="../tests/runner.html" target="_blank">用例</a></li>
+          <li><a class="issue-link" href="" target="_blank">讨论</a></li>
+        </ul>
+        
+<ol id="sidenav">
+  <li><a href="index.html">Demo</a></li>
+  <li><a href="animate.html">常用动画类</a></li>
+  <li><a href="button.html">kuma-button动画</a></li>
+  <li><a href="dialog.html">alinw/dialog动画</a></li>
+  <li><a href="icons.html">icon动画</a></li>
+  <li><a href="tip.html">alinw/tip动画</a></li>
+</ol>
+<ul id="module-output">
+  <li class="module-multiable" title="本组件共有1个子模块">文件</li>
+    <li><a data-file="kuma-animate.css" target="_blank" href="http://alinw.alicdn.com/alinw/kuma-animate/1.0.0/kuma-animate.css">■</a></li>
+</ul>
+<div id="output-card">
+    <h3>alinw/kuma-animate/1.0.0/<a target="_blank" id="output-file"></a></h3>
+    <p>这是本模块的输出文件，请复制以上 ID 进行使用。</p>
+</div>
+<div id="toc-nav">
+  <ul><li><a href="#button-hover-effect">Button Hover Effect</a><ul><li><a href="#basic-transition">Basic Transition</a></li><li><a href="#background-transition">Background Transition</a></li><li><a href="#icon-transition">Icon Transition</a></li><li><a href="#3d-transition">3D Transition</a></li></ul></ul>
+</div>
+<script type="text/javascript">
+  seajs.use(['$'], function($) {
+    $("#toc-nav").find("ul ul").remove();
+  });
+</script>
+
+
+      </aside>
+      <div id="content-wrapper">
+        <div id="content">
+<article class="hentry">
+  <h1 class="entry-title">kuma-button动画</h1>
+  <div class="entry-content">
+    <p><link rel="stylesheet" href="https://s.tbcdn.cn/g/alinw/kuma-button/2.1.1/kuma-button.css" /></p>
+<p><link rel="stylesheet" href="//g.alicdn.com/platform/common/s/1.1/global/global.css" /></p>
+<p><link rel="stylesheet" href="../src/kuma-animate.css" /></p>
+<style type="text/css">
+    a:focus, a:hover{
+        text-decoration: none;
+    }
+
+    .button-cont{
+        position: relative;
+        z-index: 1;
+        margin: 10px 0;
+    }
+</style>
+
+<h2 id="button-hover-effect">Button Hover Effect<a href="#button-hover-effect" class="anchor">¶</a></h2><h3 id="basic-transition">Basic Transition<a href="#basic-transition" class="anchor">¶</a></h3><div class="nico-insert-code"><div class="button-cont">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-hover">Button</button>
+    <button class="kuma-button kuma-button-lwhite kuma-button-ani-hover">Button</button>
+    <button class="kuma-button kuma-button-lorange kuma-button-ani-hover">Button</button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-hover"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lwhite kuma-button-ani-hover"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lorange kuma-button-ani-hover"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h3 id="background-transition">Background Transition<a href="#background-transition" class="anchor">¶</a></h3><h4 id="slide-down">Slide Down<a href="#slide-down" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-hover down">Button</button>
+    <button class="kuma-button kuma-button-lwhite kuma-button-ani-hover down">Button</button>
+    <button class="kuma-button kuma-button-lorange kuma-button-ani-hover down">Button</button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-hover down"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lwhite kuma-button-ani-hover down"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lorange kuma-button-ani-hover down"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h4 id="slide-up">Slide Up<a href="#slide-up" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-hover up">Button</button>
+    <button class="kuma-button kuma-button-lwhite kuma-button-ani-hover up">Button</button>
+    <button class="kuma-button kuma-button-lorange kuma-button-ani-hover up">Button</button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-hover up"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lwhite kuma-button-ani-hover up"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lorange kuma-button-ani-hover up"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h4 id="slide-left">Slide Left<a href="#slide-left" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-hover left">Button</button>
+    <button class="kuma-button kuma-button-lwhite kuma-button-ani-hover left">Button</button>
+    <button class="kuma-button kuma-button-lorange kuma-button-ani-hover left">Button</button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-hover left"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lwhite kuma-button-ani-hover left"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lorange kuma-button-ani-hover left"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h4 id="slide-right">Slide Right<a href="#slide-right" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-hover right">Button</button>
+    <button class="kuma-button kuma-button-lwhite kuma-button-ani-hover right">Button</button>
+    <button class="kuma-button kuma-button-lorange kuma-button-ani-hover right">Button</button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-hover right"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lwhite kuma-button-ani-hover right"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lorange kuma-button-ani-hover right"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h4 id="slide-horizontal">Slide Horizontal<a href="#slide-horizontal" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-hover slideH">Button</button>
+    <button class="kuma-button kuma-button-lwhite kuma-button-ani-hover slideH">Button</button>
+    <button class="kuma-button kuma-button-lorange kuma-button-ani-hover slideH">Button</button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-hover slideH"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lwhite kuma-button-ani-hover slideH"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lorange kuma-button-ani-hover slideH"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h5 id="slide-vertical">Slide Vertical<a href="#slide-vertical" class="anchor">¶</a></h5><div class="nico-insert-code"><div class="button-cont">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-hover slideV">Button</button>
+    <button class="kuma-button kuma-button-lwhite kuma-button-ani-hover slideV">Button</button>
+    <button class="kuma-button kuma-button-lorange kuma-button-ani-hover slideV">Button</button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-hover slideV"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lwhite kuma-button-ani-hover slideV"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lorange kuma-button-ani-hover slideV"</span>&gt;</span>Button<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h3 id="icon-transition">Icon Transition<a href="#icon-transition" class="anchor">¶</a></h3><h4 id="slide-down">Slide Down<a href="#slide-down" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-icon down">
+        <i class="kuma-icon kuma-icon-download"></i>
+        <span>下载</span>
+    </button>
+    <button class="kuma-button kuma-button-lwhite kuma-button-ani-icon down">
+        <i class="kuma-icon kuma-icon-download"></i>
+        <span>下载</span>
+    </button>
+    <button class="kuma-button kuma-button-lorange kuma-button-ani-icon down">
+        <i class="kuma-icon kuma-icon-download"></i>
+        <span>下载</span>
+    </button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-icon down"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"kuma-icon kuma-icon-download"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span>&gt;</span>下载<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lwhite kuma-button-ani-icon down"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"kuma-icon kuma-icon-download"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span>&gt;</span>下载<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lorange kuma-button-ani-icon down"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"kuma-icon kuma-icon-download"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span>&gt;</span>下载<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h4 id="slide-up">Slide Up<a href="#slide-up" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-icon up">
+        <i class="kuma-icon kuma-icon-uploading"></i>
+        <span>上传</span>
+    </button>
+    <button class="kuma-button kuma-button-lwhite kuma-button-ani-icon up">
+        <i class="kuma-icon kuma-icon-uploading"></i>
+        <span>上传</span>
+    </button>
+    <button class="kuma-button kuma-button-lorange kuma-button-ani-icon up">
+        <i class="kuma-icon kuma-icon-uploading"></i>
+        <span>上传</span>
+    </button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-icon up"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"kuma-icon kuma-icon-uploading"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span>&gt;</span>上传<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lwhite kuma-button-ani-icon up"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"kuma-icon kuma-icon-uploading"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span>&gt;</span>上传<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lorange kuma-button-ani-icon up"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"kuma-icon kuma-icon-uploading"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span>&gt;</span>上传<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h4 id="slide-left">Slide Left<a href="#slide-left" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-icon left">
+        <i class="kuma-icon kuma-icon-chevron-left"></i>
+        <span>左滑</span>
+    </button>
+    <button class="kuma-button kuma-button-lwhite kuma-button-ani-icon left">
+        <i class="kuma-icon kuma-icon-chevron-left"></i>
+        <span>左滑</span>
+    </button>
+    <button class="kuma-button kuma-button-lorange kuma-button-ani-icon left">
+        <i class="kuma-icon kuma-icon-chevron-left"></i>
+        <span>左滑</span>
+    </button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-icon left"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"kuma-icon kuma-icon-chevron-left"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span>&gt;</span>左滑<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lwhite kuma-button-ani-icon left"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"kuma-icon kuma-icon-chevron-left"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span>&gt;</span>左滑<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lorange kuma-button-ani-icon left"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"kuma-icon kuma-icon-chevron-left"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span>&gt;</span>左滑<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h4 id="slide-right">Slide Right<a href="#slide-right" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-icon right">
+        <i class="kuma-icon kuma-icon-chevron-right"></i>
+        <span>右滑</span>
+    </button>
+    <button class="kuma-button kuma-button-lwhite kuma-button-ani-icon right">
+        <i class="kuma-icon kuma-icon-chevron-right"></i>
+        <span>右滑</span>
+    </button>
+    <button class="kuma-button kuma-button-lorange kuma-button-ani-icon right">
+        <i class="kuma-icon kuma-icon-chevron-right"></i>
+        <span>右滑</span>
+    </button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-icon right"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"kuma-icon kuma-icon-chevron-right"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span>&gt;</span>右滑<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lwhite kuma-button-ani-icon right"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"kuma-icon kuma-icon-chevron-right"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span>&gt;</span>右滑<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lorange kuma-button-ani-icon right"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"kuma-icon kuma-icon-chevron-right"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span>&gt;</span>右滑<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h3 id="3d-transition">3D Transition<a href="#3d-transition" class="anchor">¶</a></h3><h4 id="rotate-down">Rotate Down<a href="#rotate-down" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont perspective">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-3d down">
+        Rotate Down
+        <span class="success">It Works!</span>
+    </button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont perspective"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-3d down"</span>&gt;</span>
+        Rotate Down
+        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"success"</span>&gt;</span>It Works!<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h4 id="rotate-up">Rotate Up<a href="#rotate-up" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont perspective">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-3d up">
+        Rotate Up
+        <span class="error">Error!</span>
+    </button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont perspective"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-3d up"</span>&gt;</span>
+        Rotate Up
+        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"error"</span>&gt;</span>Error!<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h4 id="rotate-left">Rotate Left<a href="#rotate-left" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont perspective">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-3d left">
+        Rotate Left
+        <span class="info">Info!</span>
+    </button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont perspective"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-3d left"</span>&gt;</span>
+        Rotate Left
+        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"info"</span>&gt;</span>Info!<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><h4 id="rotate-right">Rotate Right<a href="#rotate-right" class="anchor">¶</a></h4><div class="nico-insert-code"><div class="button-cont perspective">
+    <button class="kuma-button kuma-button-lblue kuma-button-ani-3d right">
+        Rorate Right
+        <span class="warning">Warning!</span>
+    </button>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"button-cont perspective"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-lblue kuma-button-ani-3d right"</span>&gt;</span>
+        Rorate Right
+        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"warning"</span>&gt;</span>Warning!<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div>
+  </div>
+</article>
+</div>
+      </div>
+      
+    </div>
+    <div id="footer-wrapper">
+      <footer>
+        <p class="powered"><a href="http://seajs.org">Sea.js</a> •
+<a href="https://github.com/spmjs/nico-cmd">nico-alinw</a> •
+<a href="http://lab.lepture.com/nico/">nico</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+  <script src="../static/js/site.js"></script>
+</html>

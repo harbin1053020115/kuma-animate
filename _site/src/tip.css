@@ -1,0 +1,204 @@
+/**
+ * Mixin
+ */
+.arale-tip-1_2_2 {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+@-webkit-keyframes slideIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+@-moz-keyframes slideIn {
+  0% {
+    opacity: 0;
+    -moz-transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@-webkit-keyframes flipIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: perspective(1000px) rotate3d(1, 0, 0, 45deg);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: perspective(1000px) rotate3d(1, 0, 0, 0deg);
+  }
+}
+@-moz-keyframes flipIn {
+  0% {
+    opacity: 0;
+    -moz-transform: perspective(1000px) rotate3d(1, 0, 0, 45deg);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: perspective(1000px) rotate3d(1, 0, 0, 0deg);
+  }
+}
+@keyframes flipIn {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) rotate3d(1, 0, 0, 45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) rotate3d(1, 0, 0, 0deg);
+  }
+}
+@-webkit-keyframes cropIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 10px, 0) rotate3d(1, 1, 0, 25deg);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+  }
+}
+@-moz-keyframes cropIn {
+  0% {
+    opacity: 0;
+    -moz-transform: translate3d(0, 10px, 0) rotate3d(1, 1, 0, 25deg);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+  }
+}
+@keyframes cropIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) rotate3d(1, 1, 0, 25deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+  }
+}
+@-webkit-keyframes scale {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.7, 0.3, 1);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+  }
+}
+@-moz-keyframes scale {
+  0% {
+    opacity: 0;
+    -moz-transform: scale3d(0.7, 0.3, 1);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+  }
+}
+@keyframes scale {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.7, 0.3, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+  }
+}
+@-webkit-keyframes rotateIn {
+  0% {
+    opacity: 0;
+    -webkit-transition: all 0.2s;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+  }
+}
+@-moz-keyframes rotateIn {
+  0% {
+    opacity: 0;
+    -moz-transition: all 0.2s;
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+  }
+}
+@keyframes rotateIn {
+  0% {
+    opacity: 0;
+    transition: all 0.2s;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0);
+  }
+}
+.ui-poptip {
+  -webkit-transition: all 0.3s linear 0s;
+  -moz-transition: all 0.3s linear 0s;
+  -ms-transition: all 0.3s linear 0s;
+  -o-transition: all 0.3s linear 0s;
+  transition: all 0.3s linear 0s;
+  transition-property: opacity, transform;
+}
+.ui-poptip.ani-tip-slideIn {
+  visibility: visible;
+  -webkit-animation: slideIn 0.3s ease-out;
+  -moz-animation: slideIn 0.3s ease-out;
+  animation: slideIn 0.3s ease-out;
+}
+.ui-poptip.ani-tip-flipIn {
+  -webkit-transform-origin: 50% calc(110%);
+  -moz-transform-origin: 50% calc(110%);
+  transform-origin: 50% calc(110%);
+  visibility: visible;
+  -webkit-animation: flipIn 0.3s ease-out;
+  -moz-animation: flipIn 0.3s ease-out;
+  animation: flipIn 0.3s ease-out;
+}
+.ui-poptip.ani-tip-cropIn {
+  visibility: visible;
+  -webkit-animation: cropIn 0.3s ease-out;
+  -moz-animation: cropIn 0.3s ease-out;
+  animation: cropIn 0.3s ease-out;
+}
+.ui-poptip.ani-tip-scale {
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  visibility: visible;
+  -webkit-animation: scale 0.3s ease-out;
+  -moz-animation: scale 0.3s ease-out;
+  animation: scale 0.3s ease-out;
+}
+.ui-poptip.ani-tip-rotateIn {
+  -webkit-transform-origin: 50% calc(106%);
+  -moz-transform-origin: 50% calc(106%);
+  transform-origin: 50% calc(106%);
+  visibility: visible;
+  -webkit-animation: rotateIn 0.3s ease-out;
+  -moz-animation: rotateIn 0.3s ease-out;
+  animation: rotateIn 0.3s ease-out;
+}

@@ -1,0 +1,341 @@
+/**
+ * Button Hover
+ */
+@import "mixin.less";
+
+.kuma-button{
+    &:active, &:focus{
+        outline: none;
+    }
+}
+
+// Basic Transition
+.kuma-button-ani-hover{
+    .transition(all, .3s);
+
+    position: relative;
+
+    &.down, &.up, &.left, &.right, &.slideH, &.slideV{
+        background: transparent;
+        color: #666;
+    }
+    &.down:hover, &.up:hover, &.left:hover, &.right:hover, &.slideH:hover, &.slideH:hover{
+        background: transparent;
+        color: #fff;
+    }
+
+    &.down:after{
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+    }
+    &.up:after{
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+    }
+    &.left:after{
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+    }
+    &.right:after{
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 100%;
+    }
+    &.slideH:after{
+        top: 0;
+        left: 50%;
+        width: 0;
+        height: 100%;
+    }
+    &.slideV:after{
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 0;
+    }
+
+    &:hover{
+        &.down:after, &.up:after{
+            height: 100%;
+        }
+        &.left:after, &.right:after{
+            width: 100%;
+        }
+        &.slideH:after{
+            left: 0;
+            width: 100%;
+        }
+        &.slideV:after{
+            top: 0;
+            height: 100%;
+        }
+    }
+}
+
+.kuma-button-ani-hover:after{
+    .transition(all, .3s);
+
+    content: '';
+    position: absolute;
+    z-index: -1;
+}
+
+&.kuma-button-sblue, &.kuma-button-mblue, &.kuma-button-lblue{
+    &:after{
+        background-color: #43a4ff;
+    }
+}
+&.kuma-button-swhite, &.kuma-button-mwhite, &.kuma-button-lwhite{
+    &:after{
+        background-color: #f90;
+    }
+}
+&.kuma-button-sorange, &.kuma-button-morange, &.kuma-button-lorange{
+    &:after{
+        background-color: #ff944d;
+    }
+}
+
+// Icon Transition
+.kuma-button-ani-icon{
+    position: relative;
+    overflow: hidden;
+
+    .kuma-icon{
+        .transition(all, .3s);
+        position: absolute;
+        text-align: center;
+    }
+
+    span{
+        .transition(all, .3s);
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+    }
+
+    &.down{
+        .kuma-icon{
+            left: 0;
+            top: -100%;
+            width: 100%;
+        }
+
+        &:hover{
+            .kuma-icon{
+                top: 0;
+            }
+
+            span{
+                -webkit-transform: translateY(100%);
+                -moz-transform: translateY(100%);
+                -ms-transform: translateY(100%);
+                -o-transform: translateY(100%);
+                transform: translateY(100%);
+            }
+        }
+    }
+    &.up{
+        .kuma-icon{
+            left: 0;
+            top: 100%;
+            width: 100%;
+        }
+
+        &:hover{
+            .kuma-icon{
+                top: 0;
+            }
+
+            span{
+                -webkit-transform: translateY(-100%);
+                -moz-transform: translateY(-100%);
+                -ms-transform: translateY(-100%);
+                -o-transform: translateY(-100%);
+                transform: translateY(-100%);
+            }
+        }
+    }
+    &.left{
+        .kuma-icon{
+            top: 0;
+            left: 100%;
+            width: 100%;
+        }
+
+        &:hover{
+            .kuma-icon{
+                left: 0;
+            }
+
+            span{
+                -webkit-transform: translateX(-200%);
+                -moz-transform: translateX(-200%);
+                -ms-transform: translateX(-200%);
+                -o-transform: translateX(-200%);
+                transform: translateX(-200%);
+            }
+        }
+    }
+    &.right{
+        .kuma-icon{
+            top: 0;
+            left: -100%;
+            width: 100%;
+        }
+
+        &:hover{
+            .kuma-icon{
+                left: 0;
+            }
+
+            span{
+                -webkit-transform: translateX(200%);
+                -moz-transform: translateX(200%);
+                -ms-transform: translateX(200%);
+                -o-transform: translateX(200%);
+                transform: translateX(200%);
+            }
+        }
+    }
+}
+
+// 3D Transition
+.kuma-button-ani-3d{
+    .transition(all, .3s);
+    position: relative;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    span{
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+
+        &.success{
+            background: #7aca7c;
+            color: #358337;
+        }
+        &.error{
+            background: #e96a6a;
+            color: #a33a3a;
+        }
+        &.info{
+            background: #b2e2ea;
+            color: #666;
+        }
+        &.warning{
+            background: #fefea4;
+            color: #666;
+        }
+    }
+
+    &.down{
+        span{
+            top: -100%;
+            -webkit-transform-origin: 0% 100%;
+            -webkit-transform: rotateX(90deg);
+            -moz-transform-origin: 0% 100%;
+            -moz-transform: rotateX(90deg);
+            -ms-transform-origin: 0% 100%;
+            -ms-transform: rotateX(90deg);
+            transform-origin: 0% 100%;
+            transform: rotateX(90deg);
+        }
+    }
+    &.up{
+        span{
+            top: 100%;
+            -webkit-transform-origin: 0% 0%;
+            -webkit-transform: rotateX(-90deg);
+            -moz-transform-origin: 0% 0%;
+            -moz-transform: rotateX(-90deg);
+            -ms-transform-origin: 0% 0%;
+            -ms-transform: rotateX(-90deg);
+            transform-origin: 0% 0%;
+            transform: rotateX(-90deg);
+        }
+    }
+    &.left{
+        span{
+            left: 100%;
+            -webkit-transform-origin: 0% 0%;
+            -webkit-transform: rotateY(-90deg);
+            -moz-transform-origin: 0% 0%;
+            -moz-transform: rotateY(-90deg);
+            -ms-transform-origin: 0% 0%;
+            -ms-transform: rotateY(-90deg);
+            transform-origin: 0% 0%;
+            transform: rotateY(-90deg);
+        }
+    }
+    &.right{
+        span{
+            left: -100%;
+            -webkit-transform-origin: 100% 0%;
+            -webkit-transform: rotateY(90deg);
+            -moz-transform-origin: 100% 0%;
+            -moz-transform: rotateY(90deg);
+            -ms-transform-origin: 100% 0%;
+            -ms-transform: rotateY(90deg);
+            transform-origin: 100% 0%;
+            transform: rotateY(90deg);
+        }
+    }
+
+    &.down:hover{
+        -webkit-transform-origin: 0% 100%;
+        -webkit-transform: rotateX(-90deg) translateY(100%);
+        -moz-transform-origin: 50% 100%;
+        -moz-transform: rotateX(-90deg) translateY(100%);
+        -ms-transform-origin: 50% 100%;
+        -ms-transform: rotateX(-90deg) translateY(100%);
+        transform-origin: 50% 100%;
+        transform: rotateX(-90deg) translateY(100%);
+    }
+    &.up:hover{
+        -webkit-transform-origin: 50% 0%;
+        -webkit-transform: rotateX(90deg) translateY(-100%);
+        -moz-transform-origin: 50% 0%;
+        -moz-transform: rotateX(90deg) translateY(-100%);
+        -ms-transform-origin: 50% 0%;
+        -ms-transform: rotateX(90deg) translateY(-100%);
+        transform-origin: 50% 0%;
+        transform: rotateX(90deg) translateY(-100%);
+    }
+    &.left:hover{
+        -webkit-transform-origin: 0% 50%;
+        -webkit-transform: rotateY(90deg) translateX(-100%);
+        -moz-transform-origin: 0% 50%;
+        -moz-transform: rotateY(90deg) translateX(-100%);
+        -ms-transform-origin: 0% 50%;
+        -ms-transform: rotateY(90deg) translateX(-100%);
+        transform-origin: 0% 50%;
+        transform: rotateY(90deg) translateX(-100%);
+    }
+    &.right:hover{
+        -webkit-transform-origin: 100% 50%;
+        -webkit-transform: rotateY(-90deg) translateX(100%);
+        -moz-transform-origin: 100% 50%;
+        -moz-transform: rotateY(-90deg) translateX(100%);
+        -ms-transform-origin: 100% 50%;
+        -ms-transform: rotateY(-90deg) translateX(100%);
+        transform-origin: 100% 50%;
+        transform: rotateY(-90deg) translateX(100%);
+    }
+}

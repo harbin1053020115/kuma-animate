@@ -1,0 +1,536 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8">
+    <title>alinw/kuma-animate - 常用动画类</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="nico 0.5.2" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link type="image/x-icon" href="../static/css/favicon.ico" rel="icon">
+    <link rel="stylesheet" type="text/css" href="//alinw.alicdn.com/??alinw/kuma/3.0.4/kuma.css">
+    <link rel="stylesheet" href="../static/css/normalize.css" />
+    <link rel="stylesheet" href="../static/css/site.css" />
+    <link rel="stylesheet" href="../static/css/solarized.css" />
+
+<script src="https://alinw.alipayobjects.com/??
+seajs/seajs/2.2.0/sea.js,
+seajs/seajs-combo/1.0.1/seajs-combo.js,
+seajs/seajs-style/1.0.2/seajs-style.js,
+seajs/seajs-health/0.1.0/seajs-health.js,
+jquery/jquery/1.7.2/jquery.js"></script>
+<script>
+  (function() {
+
+  var query = location.search.substring(1).split('&');
+  var srcdir = 'src';
+
+  if (contain(query, 'dist')) {
+    srcdir = 'dist';
+    
+  } else if (contain(query, 'cov')) {
+    srcdir = 'src-cov';
+  }
+
+  var projectHost = '//alinw.alicdn.com';
+
+  seajs.config({
+    paths: {
+      platform: projectHost + '/platform',
+      alinw: projectHost + '/alinw',
+      crystal: projectHost + '/crystal'
+    },
+    alias: {
+      "$": 'jquery/jquery/1.7.2/jquery',
+      "$-debug": 'jquery/jquery/1.7.2/jquery-debug',
+      "jquery": 'jquery/jquery/1.7.2/jquery',
+      "jquery-debug": 'jquery/jquery/1.7.2/jquery-debug',
+      expect: "gallery/expect/0.2.0/expect",
+      puerh: "popomore/puerh/0.1.0/puerh",
+      handlebars: "gallery/handlebars/1.0.2/handlebars",
+      sinon: "gallery/sinon/1.6.0/sinon",
+      widget: "arale/widget/1.1.1/widget"
+    },
+    map: [function(uri) {
+      // resolve id
+      var m = uri.match(/alinw\/kuma-animate\/1.0.0\/(.*)/);
+      if (m) {
+        return resolve(m[1]);
+      }
+      return uri;
+    }, function(uri) {
+      var m = uri.match(/([A-Za-z\-]+)\/[A-Za-z\-]+\/[\.0-9]+\/.+/);
+      if (m && /^alipay|anima$/.test(m[1])) {
+        return 'http://yuan.alipay.im/assets/' + m[0];
+      }
+      return uri;
+    }],
+    comboExcludes: {test: function(uri) {
+      return uri.indexOf('https://alinw.alipayobjects.com') === -1;
+    }}
+  });
+
+  function resolve(file) {
+    if (contain(query, 'debug')) {
+      if (file.indexOf('-debug') === -1) {
+        file = file.replace(/\.(\w+)$/, '-debug.$1');
+      }
+    }
+    return seajs.resolve("../" + srcdir + "/" + file + '#');
+  }
+
+  function contain(arr, value) {
+    for (var i in arr) {
+      if (arr[i] === value) {
+        return true;
+      }
+    }
+    return false;
+  }
+      seajs.config({ alias: {"dialog":"alinw/dialog/2.0.7/dialog","tip":"alinw/tip/2.2.4/tip"}});
+    seajs.use([]);
+      seajs.config({ alias: {}});
+
+    seajs.config({alias: {
+      "$-debug": 'jquery/jquery/1.7.2/jquery-debug'
+        ,"button.css": resolve("button.css")
+        ,"common.css": resolve("common.css")
+        ,"dialog.css": resolve("dialog.css")
+        ,"icons.css": resolve("icons.css")
+        ,"kuma-animate.css": resolve("kuma-animate.css")
+        ,"kuma-button.css": resolve("kuma-button.css")
+        ,"mixin.css": resolve("mixin.css")
+        ,"tip.css": resolve("tip.css")
+    }});
+
+    // 加载依赖的 css 文件
+    var cssArray = [];
+    cssArray.push('alinw/dialog/2.0.7/dialog');
+    cssArray.push('alinw/tip/2.2.4/tip');
+    for (var i=0; i<cssArray.length; i++) {
+      if (cssArray[i].indexOf('.css') < 0) {
+        cssArray[i] = '';
+      }
+    }
+    seajs.use(cssArray);
+  })();
+</script>
+    <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.js"></script>
+    <![endif]-->
+    
+  </head>
+  <body class="alice">
+    <div id="body-wrapper">
+      <aside id="sidebar-wrapper">
+      <h1>
+          <a href="../">Kuma-animate</a><sup class="package-root"><a href="/">alinw</a></sup>
+      </h1>
+        <p class="version">当前版本：<a href="">1.0.0</a></p>
+        <p class="description">The best project ever.</p>
+        <p class="keywords" style="display: none;">animate</p>
+        <a class="source" href="http://gitlab.alibaba-inc.com/alinw/kuma-animate" target="_blank">View the Project</a>
+        <ul id="navigation" role="navigation">
+          <li><a href="../">文档</a></li>
+          <li><a href="index.html">演示</a></li>
+          <li><a href="../history.html">历史</a></li>
+          <li><a class="test-link" href="../tests/runner.html" target="_blank">用例</a></li>
+          <li><a class="issue-link" href="" target="_blank">讨论</a></li>
+        </ul>
+        
+<ol id="sidenav">
+  <li><a href="index.html">Demo</a></li>
+  <li><a href="animate.html">常用动画类</a></li>
+  <li><a href="button.html">kuma-button动画</a></li>
+  <li><a href="dialog.html">alinw/dialog动画</a></li>
+  <li><a href="icons.html">icon动画</a></li>
+  <li><a href="tip.html">alinw/tip动画</a></li>
+</ol>
+<ul id="module-output">
+  <li class="module-multiable" title="本组件共有1个子模块">文件</li>
+    <li><a data-file="kuma-animate.css" target="_blank" href="http://alinw.alicdn.com/alinw/kuma-animate/1.0.0/kuma-animate.css">■</a></li>
+</ul>
+<div id="output-card">
+    <h3>alinw/kuma-animate/1.0.0/<a target="_blank" id="output-file"></a></h3>
+    <p>这是本模块的输出文件，请复制以上 ID 进行使用。</p>
+</div>
+<div id="toc-nav">
+  <ul><li><a href="#使用方法">使用方法</a></li></ul>
+</div>
+<script type="text/javascript">
+  seajs.use(['$'], function($) {
+    $("#toc-nav").find("ul ul").remove();
+  });
+</script>
+
+
+      </aside>
+      <div id="content-wrapper">
+        <div id="content">
+<article class="hentry">
+  <h1 class="entry-title">常用动画类</h1>
+  <div class="entry-content">
+    <p><link rel="stylesheet" href="https://s.tbcdn.cn/g/alinw/kuma-button/2.1.1/kuma-button.css" /></p>
+<link rel="stylesheet" href="../src/kuma-animate.css" />
+
+<style>
+    .cont{
+        position: relative;
+        background: rgba(0, 0, 0, .1);
+        height: 600px;
+    }
+    .cont #J_animateBall{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -50px;
+        margin-top: -50px;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #888;
+        border-radius: 100px;
+        background: rgba(255, 255, 255, .5);
+        text-align: center;
+        line-height: 100px;
+        box-shadow: 3px 3px 7px rgba(0,0,0,.5);
+    }
+    .action{
+        margin: 10px 0;
+        vertical-align: middle;
+    }
+    .action select{
+        display: inline-block;
+        border: 1px solid #c0c8c9;
+        height: 28px;
+        line-height: 28px;
+        padding: 10px 20px;
+        vertical-align: middle;
+    }
+    .action button{
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>
+
+<h2 id="使用方法">使用方法<a href="#使用方法" class="anchor">¶</a></h2><p>所有kuma-animate动画类都以&quot;ani-&quot;为前缀，选择一个动画类加上&quot;ani-&quot;前缀作为一个className添加到元素</p>
+<p>例如：
+选择了bounce动画类，拼接成&quot;ani-bounce&quot;作为一个class加入你想要动画的element</p>
+<div class="nico-insert-code"><div class="action">
+    <label>动画类：</label>
+    <select>
+        <optgroup label="Attention Seekers">
+          <option value="bounce">bounce</option>
+          <option value="flash">flash</option>
+          <option value="pulse">pulse</option>
+          <option value="rubberBand">rubberBand</option>
+          <option value="shake">shake</option>
+          <option value="swing">swing</option>
+          <option value="tada">tada</option>
+          <option value="wobble">wobble</option>
+          <option value="jello">jello</option>
+        </optgroup>
+
+        <optgroup label="Bouncing Entrances">
+          <option value="bounceIn">bounceIn</option>
+          <option value="bounceInDown">bounceInDown</option>
+          <option value="bounceInLeft">bounceInLeft</option>
+          <option value="bounceInRight">bounceInRight</option>
+          <option value="bounceInUp">bounceInUp</option>
+        </optgroup>
+
+        <optgroup label="Bouncing Exits">
+          <option value="bounceOut">bounceOut</option>
+          <option value="bounceOutDown">bounceOutDown</option>
+          <option value="bounceOutLeft">bounceOutLeft</option>
+          <option value="bounceOutRight">bounceOutRight</option>
+          <option value="bounceOutUp">bounceOutUp</option>
+        </optgroup>
+
+        <optgroup label="Fading Entrances">
+          <option value="fadeIn">fadeIn</option>
+          <option value="fadeInDown">fadeInDown</option>
+          <option value="fadeInDownBig">fadeInDownBig</option>
+          <option value="fadeInLeft">fadeInLeft</option>
+          <option value="fadeInLeftBig">fadeInLeftBig</option>
+          <option value="fadeInRight">fadeInRight</option>
+          <option value="fadeInRightBig">fadeInRightBig</option>
+          <option value="fadeInUp">fadeInUp</option>
+          <option value="fadeInUpBig">fadeInUpBig</option>
+        </optgroup>
+
+        <optgroup label="Fading Exits">
+          <option value="fadeOut">fadeOut</option>
+          <option value="fadeOutDown">fadeOutDown</option>
+          <option value="fadeOutDownBig">fadeOutDownBig</option>
+          <option value="fadeOutLeft">fadeOutLeft</option>
+          <option value="fadeOutLeftBig">fadeOutLeftBig</option>
+          <option value="fadeOutRight">fadeOutRight</option>
+          <option value="fadeOutRightBig">fadeOutRightBig</option>
+          <option value="fadeOutUp">fadeOutUp</option>
+          <option value="fadeOutUpBig">fadeOutUpBig</option>
+        </optgroup>
+
+        <optgroup label="Flippers">
+          <option value="flip">flip</option>
+          <option value="flipInX">flipInX</option>
+          <option value="flipInY">flipInY</option>
+          <option value="flipOutX">flipOutX</option>
+          <option value="flipOutY">flipOutY</option>
+        </optgroup>
+
+        <optgroup label="Lightspeed">
+          <option value="lightSpeedIn">lightSpeedIn</option>
+          <option value="lightSpeedOut">lightSpeedOut</option>
+        </optgroup>
+
+        <optgroup label="Rotating Entrances">
+          <option value="rotateIn">rotateIn</option>
+          <option value="rotateInDownLeft">rotateInDownLeft</option>
+          <option value="rotateInDownRight">rotateInDownRight</option>
+          <option value="rotateInUpLeft">rotateInUpLeft</option>
+          <option value="rotateInUpRight">rotateInUpRight</option>
+        </optgroup>
+
+        <optgroup label="Rotating Exits">
+          <option value="rotateOut">rotateOut</option>
+          <option value="rotateOutDownLeft">rotateOutDownLeft</option>
+          <option value="rotateOutDownRight">rotateOutDownRight</option>
+          <option value="rotateOutUpLeft">rotateOutUpLeft</option>
+          <option value="rotateOutUpRight">rotateOutUpRight</option>
+        </optgroup>
+
+        <optgroup label="Sliding Entrances">
+          <option value="slideInUp">slideInUp</option>
+          <option value="slideInDown">slideInDown</option>
+          <option value="slideInLeft">slideInLeft</option>
+          <option value="slideInRight">slideInRight</option>
+
+        </optgroup>
+        <optgroup label="Sliding Exits">
+          <option value="slideOutUp">slideOutUp</option>
+          <option value="slideOutDown">slideOutDown</option>
+          <option value="slideOutLeft">slideOutLeft</option>
+          <option value="slideOutRight">slideOutRight</option>
+
+        </optgroup>
+
+        <optgroup label="Zoom Entrances">
+          <option value="zoomIn">zoomIn</option>
+          <option value="zoomInDown">zoomInDown</option>
+          <option value="zoomInLeft">zoomInLeft</option>
+          <option value="zoomInRight">zoomInRight</option>
+          <option value="zoomInUp">zoomInUp</option>
+        </optgroup>
+
+        <optgroup label="Zoom Exits">
+          <option value="zoomOut">zoomOut</option>
+          <option value="zoomOutDown">zoomOutDown</option>
+          <option value="zoomOutLeft">zoomOutLeft</option>
+          <option value="zoomOutRight">zoomOutRight</option>
+          <option value="zoomOutUp">zoomOutUp</option>
+        </optgroup>
+
+        <optgroup label="Specials">
+          <option value="hinge">hinge</option>
+          <option value="rollIn">rollIn</option>
+          <option value="rollOut">rollOut</option>
+        </optgroup>
+    </select>
+    <button class="kuma-button kuma-button-mblue" id="J_triggerAnimation">Animate It</button>
+</div>
+
+<div class="cont">
+    <div id="J_animateBall">
+        <h1>Ball</h1>
+    </div>
+</div></div><div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"action"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">label</span>&gt;</span>动画类：<span class="tag">&lt;/<span class="title">label</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">select</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Attention Seekers"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"bounce"</span>&gt;</span>bounce<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"flash"</span>&gt;</span>flash<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"pulse"</span>&gt;</span>pulse<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rubberBand"</span>&gt;</span>rubberBand<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"shake"</span>&gt;</span>shake<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"swing"</span>&gt;</span>swing<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"tada"</span>&gt;</span>tada<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"wobble"</span>&gt;</span>wobble<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"jello"</span>&gt;</span>jello<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Bouncing Entrances"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"bounceIn"</span>&gt;</span>bounceIn<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"bounceInDown"</span>&gt;</span>bounceInDown<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"bounceInLeft"</span>&gt;</span>bounceInLeft<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"bounceInRight"</span>&gt;</span>bounceInRight<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"bounceInUp"</span>&gt;</span>bounceInUp<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Bouncing Exits"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"bounceOut"</span>&gt;</span>bounceOut<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"bounceOutDown"</span>&gt;</span>bounceOutDown<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"bounceOutLeft"</span>&gt;</span>bounceOutLeft<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"bounceOutRight"</span>&gt;</span>bounceOutRight<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"bounceOutUp"</span>&gt;</span>bounceOutUp<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Fading Entrances"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeIn"</span>&gt;</span>fadeIn<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeInDown"</span>&gt;</span>fadeInDown<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeInDownBig"</span>&gt;</span>fadeInDownBig<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeInLeft"</span>&gt;</span>fadeInLeft<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeInLeftBig"</span>&gt;</span>fadeInLeftBig<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeInRight"</span>&gt;</span>fadeInRight<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeInRightBig"</span>&gt;</span>fadeInRightBig<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeInUp"</span>&gt;</span>fadeInUp<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeInUpBig"</span>&gt;</span>fadeInUpBig<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Fading Exits"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeOut"</span>&gt;</span>fadeOut<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeOutDown"</span>&gt;</span>fadeOutDown<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeOutDownBig"</span>&gt;</span>fadeOutDownBig<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeOutLeft"</span>&gt;</span>fadeOutLeft<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeOutLeftBig"</span>&gt;</span>fadeOutLeftBig<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeOutRight"</span>&gt;</span>fadeOutRight<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeOutRightBig"</span>&gt;</span>fadeOutRightBig<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeOutUp"</span>&gt;</span>fadeOutUp<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"fadeOutUpBig"</span>&gt;</span>fadeOutUpBig<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Flippers"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"flip"</span>&gt;</span>flip<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"flipInX"</span>&gt;</span>flipInX<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"flipInY"</span>&gt;</span>flipInY<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"flipOutX"</span>&gt;</span>flipOutX<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"flipOutY"</span>&gt;</span>flipOutY<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Lightspeed"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"lightSpeedIn"</span>&gt;</span>lightSpeedIn<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"lightSpeedOut"</span>&gt;</span>lightSpeedOut<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Rotating Entrances"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rotateIn"</span>&gt;</span>rotateIn<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rotateInDownLeft"</span>&gt;</span>rotateInDownLeft<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rotateInDownRight"</span>&gt;</span>rotateInDownRight<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rotateInUpLeft"</span>&gt;</span>rotateInUpLeft<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rotateInUpRight"</span>&gt;</span>rotateInUpRight<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Rotating Exits"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rotateOut"</span>&gt;</span>rotateOut<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rotateOutDownLeft"</span>&gt;</span>rotateOutDownLeft<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rotateOutDownRight"</span>&gt;</span>rotateOutDownRight<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rotateOutUpLeft"</span>&gt;</span>rotateOutUpLeft<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rotateOutUpRight"</span>&gt;</span>rotateOutUpRight<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Sliding Entrances"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"slideInUp"</span>&gt;</span>slideInUp<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"slideInDown"</span>&gt;</span>slideInDown<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"slideInLeft"</span>&gt;</span>slideInLeft<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"slideInRight"</span>&gt;</span>slideInRight<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Sliding Exits"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"slideOutUp"</span>&gt;</span>slideOutUp<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"slideOutDown"</span>&gt;</span>slideOutDown<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"slideOutLeft"</span>&gt;</span>slideOutLeft<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"slideOutRight"</span>&gt;</span>slideOutRight<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Zoom Entrances"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"zoomIn"</span>&gt;</span>zoomIn<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"zoomInDown"</span>&gt;</span>zoomInDown<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"zoomInLeft"</span>&gt;</span>zoomInLeft<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"zoomInRight"</span>&gt;</span>zoomInRight<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"zoomInUp"</span>&gt;</span>zoomInUp<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Zoom Exits"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"zoomOut"</span>&gt;</span>zoomOut<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"zoomOutDown"</span>&gt;</span>zoomOutDown<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"zoomOutLeft"</span>&gt;</span>zoomOutLeft<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"zoomOutRight"</span>&gt;</span>zoomOutRight<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"zoomOutUp"</span>&gt;</span>zoomOutUp<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+
+        <span class="tag">&lt;<span class="title">optgroup</span> <span class="attribute">label</span>=<span class="value">"Specials"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"hinge"</span>&gt;</span>hinge<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rollIn"</span>&gt;</span>rollIn<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"rollOut"</span>&gt;</span>rollOut<span class="tag">&lt;/<span class="title">option</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">optgroup</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">select</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"kuma-button kuma-button-mblue"</span> <span class="attribute">id</span>=<span class="value">"J_triggerAnimation"</span>&gt;</span>Animate It<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"cont"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"J_animateBall"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Ball<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span></code></pre></div><script>seajs.use(['$'], function($){
+  var ball = $('#J_animateBall'),
+      select = $('select'),
+      triggerBtn = $('#J_triggerAnimation');
+
+  function testAnim(x) {
+    x = 'ani-' + x;
+    ball.removeClass().addClass(x).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $(this).removeClass();
+    });
+  };
+
+  triggerBtn.click(function(e){
+    e.preventDefault();
+
+    var anim = select.val();
+    testAnim(anim);
+  });
+
+  select.change(function(){
+    var anim = $(this).val();
+    testAnim(anim);
+  });
+});</script><div class="highlight"><pre><code class="javascript">seajs.use([<span class="string">'$'</span>], <span class="function"><span class="keyword">function</span><span class="params">($)</span>{</span>
+  <span class="keyword">var</span> ball = $(<span class="string">'#J_animateBall'</span>),
+      select = $(<span class="string">'select'</span>),
+      triggerBtn = $(<span class="string">'#J_triggerAnimation'</span>);
+
+  <span class="function"><span class="keyword">function</span> <span class="title">testAnim</span><span class="params">(x)</span> {</span>
+    x = <span class="string">'ani-'</span> + x;
+    ball.removeClass().addClass(x).one(<span class="string">'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+      $(<span class="keyword">this</span>).removeClass();
+    });
+  };
+
+  triggerBtn.click(<span class="function"><span class="keyword">function</span><span class="params">(e)</span>{</span>
+    e.preventDefault();
+
+    <span class="keyword">var</span> anim = select.val();
+    testAnim(anim);
+  });
+
+  select.change(<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+    <span class="keyword">var</span> anim = $(<span class="keyword">this</span>).val();
+    testAnim(anim);
+  });
+});</code></pre></div>
+  </div>
+</article>
+</div>
+      </div>
+      
+    </div>
+    <div id="footer-wrapper">
+      <footer>
+        <p class="powered"><a href="http://seajs.org">Sea.js</a> •
+<a href="https://github.com/spmjs/nico-cmd">nico-alinw</a> •
+<a href="http://lab.lepture.com/nico/">nico</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+  <script src="../static/js/site.js"></script>
+</html>
